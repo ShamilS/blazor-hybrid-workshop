@@ -19,6 +19,22 @@ public partial class App : MauiWinUIApplication
 		this.InitializeComponent();
 	}
 
-	protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
+	//protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
+	protected override MauiApp CreateMauiApp()
+	{
+		var errorMessage = "";
+		try
+		{
+			var app = MauiProgram.CreateMauiApp();
+			return app;
+		}
+		catch (Exception ex)
+		{
+			errorMessage = ex.Message;
+			System.Console.WriteLine(ex.Message);
+		}
+
+		throw new Exception($"Failed to create MAUI app, error = {errorMessage}");
+	}
 }
 

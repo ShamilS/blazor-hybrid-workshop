@@ -1,7 +1,11 @@
 ﻿@page "/"
 @inject MonkeyService monkeyService
+@inject IDialogService DialogService
 
 <div>
+    <button class="button-yellow" @onclick="AddMonkey">Add New Monkey</button>
+    <p>Name: @DialogData.Name - Population: @DialogData.Population</p>
+
     @if (monkeys is null)
     {
         <p><em>Loading...</em></p>
@@ -24,11 +28,31 @@
 </div>
 
 @code {
+    private Monkey DialogData { get; set; } = new();
     private List<Monkey> monkeys = new();
 
     protected override async Task OnInitializedAsync()
     {
         // Load monkeys from MonkeyService
         monkeys = await monkeyService.GetMonkeys();
+    }
+
+    private async Task AddMonkey()
+    {
+        var data = new Monkey();
+        var dialog = await DialogService.ShowDialogAsync<SimpleCustomizedDialog>(data, new DialogParameters()
+            {
+                Title = $"Add a New Monkey",
+                PreventDismissOnOverlayClick = true,
+                PreventScroll = true,
+            });
+
+        var result = await dialog.Result;
+        if (!result.Cancelled && result.Data is not null)
+        {
+            DialogData = (Monkey)result.Data;
+            monkeyService.AddMonkey(DialogData);
+            monkeys = await monkeyService.GetMonkeys();
+        }
     }
 }

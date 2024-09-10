@@ -1,6 +1,7 @@
 ﻿@page "/"
 @inject MonkeyService monkeyService
 @inject IDialogService DialogService
+@inject NavigationManager NavManager
 
 <div>
     <button class="button-yellow" @onclick="AddMonkey">Add New Monkey</button>
@@ -13,8 +14,10 @@
     {
         <ul class="card-list">
             @foreach (var monkey in monkeys)
+
             {
-                <li class="card-item">
+                <!-- Notice the new @onclick attribute here -->
+                <li @onclick="()=>GoToDetails(monkey)" class="card-item">
                     <img class="card-image" src="@monkey.Image">
                     <div class="card-content">
                         <h2>@monkey.Name</h2>
@@ -57,5 +60,10 @@
             monkeyService.AddMonkey(DialogData);
             monkeys = await monkeyService.GetMonkeys();
         }
+    }
+
+    private void GoToDetails(Monkey monkey)
+    {
+        NavManager.NavigateTo($"details/{monkey.Name}");
     }
 }

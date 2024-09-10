@@ -19,12 +19,15 @@ public static class MauiProgram
 		builder.Services.AddFluentUIComponents();
 
 		builder.Services.AddSingleton<MonkeyService>();
+        builder.Services.AddSingleton<IMap>(sp => Map.Default);
 
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();
 		builder.Logging.AddDebug();
 #endif
-
+        
+		builder.Services.AddSingleton<IGeolocation>(sp => Geolocation.Default);
+        
 		return builder.Build();
 	}
 }

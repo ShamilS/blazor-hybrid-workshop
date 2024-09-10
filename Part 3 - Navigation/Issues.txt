@@ -1,0 +1,18 @@
+Severity	    Error
+Code	        DEP0700: Registration of the app failed. 
+Description	
+Project	File	
+Line	
+Suppression 
+State	
+Details
+
+[0x80073CF6] AppxManifest.xml(34,27): 
+error 0x80070002: Cannot install or update package com.companyname.monkeyfinderhybrid_9zz4h110yvjzm 
+because the splash screen image [splashSplashScreen.png] cannot be located. 
+Verify that the package contains an image that can be used as a splash screen for the application, 
+and that the package manifest points to the correct location in the package where 
+this splash screen image can be found.	
+
+MonkeyFinderHybrid				
+

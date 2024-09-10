@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonkeyFinderHybrid", "Monke
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{809DDCEA-E220-4C73-A8A6-D3606A3FB095}"
 	ProjectSection(SolutionItems) = preProject
+		Notes.txt = Notes.txt
 		README.md = README.md
 	EndProjectSection
 EndProject

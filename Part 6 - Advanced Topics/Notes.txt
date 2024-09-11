@@ -272,6 +272,83 @@ Error		DEP0700: Registration of the app failed. [0x80073CF6] AppxManifest.xml(34
 23) rebuild and run (Win11, .NET8, VS2022) - everything works well. 
 
 
+24) added to info.plst
+
+    <key>CFBundleVersionString</key>
+     <string>1.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+
+    fyll code is:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>UIDeviceFamily</key>
+    <array>
+        <integer>1</integer>
+        <integer>2</integer>
+    </array>
+    <key>UIRequiredDeviceCapabilities</key>
+    <array>
+        <string>arm64</string>
+    </array>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    <key>UISupportedInterfaceOrientations~ipad</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationPortraitUpsideDown</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+
+    <key>CFBundleVersionString</key>
+     <string>1.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+
+    <key>XSAppIconAssets</key>
+    <string>Assets.xcassets/appicon.appiconset</string>
+</dict>
+</plist>
+
+
+still error 
+
+>dotnet build -t:Run -f net8.0-ios
+
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Detected signing identity:
+          
+    Bundle Id: com.companyname.monkeyfinderhybrid
+    App Id: com.companyname.monkeyfinderhybrid
+  MonkeyFinderHybrid -> /Users/nardo/Learning/test_dotnet/DWHP6/MonkeyFinderHybrid/bin/Debug/net8.0-ios/iossimulator-arm64/MonkeyFinderHybrid.dll
+  Optimizing assemblies for size may change the behavior of the app. Be sure to test after publishing. See: https://aka.ms/dotnet-illink
+  An error was encountered processing the command (domain=NSPOSIXErrorDomain, code=22):
+  Simulator device failed to install the application.
+  The application's Info.plist does not contain a valid CFBundleVersion.
+  Ensure your bundle contains a valid CFBundleVersion.
+  Underlying error (domain=NSPOSIXErrorDomain, code=22):
+  	Failed to install the requested application
+  	The application's Info.plist does not contain a valid CFBundleVersion.
+EXEC : error HE0046: Failed to install the app 'com.companyname.monkeyfinderhybrid' on the device 'iOS 17.5 (21F79) - iPad Pro 13-inch (M4) (16GB)': simctl returned exit code 22 [/Users/nardo/Learning/test_dotnet/DWHP6/MonkeyFinderHybrid/MonkeyFinderHybrid.csproj::TargetFramework=net8.0-ios]
+/usr/local/share/dotnet/sdk/8.0.401/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.targets(1056,5): error MSB3073: The command "/usr/local/share/dotnet/packs/Microsoft.iOS.Sdk.net8.0_17.5/17.5.8020/tools/bin/mlaunch --launchsim bin/Debug/net8.0-ios/iossimulator-arm64/MonkeyFinderHybrid.app/ --device ":v2:runtime=com.apple.CoreSimulator.SimRuntime.iOS-17-5,devicetype=com.apple.CoreSimulator.SimDeviceType.iPad-Pro-13-inch-M4-16GB" --stdout /dev/ttys000 --stderr /dev/ttys000 --wait-for-exit:true" exited with code 1. [/Users/nardo/Learning/test_dotnet/DWHP6/MonkeyFinderHybrid/MonkeyFinderHybrid.csproj::TargetFramework=net8.0-ios]
+
+Build FAILED.
+
+EXEC : error HE0046: Failed to install the app 'com.companyname.monkeyfinderhybrid' on the device 'iOS 17.5 (21F79) - iPad Pro 13-inch (M4) (16GB)': simctl returned exit code 22 [/Users/nardo/Learning/test_dotnet/DWHP6/MonkeyFinderHybrid/MonkeyFinderHybrid.csproj::TargetFramework=net8.0-ios]
+/usr/local/share/dotnet/sdk/8.0.401/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.targets(1056,5): error MSB3073: The command "/usr/local/share/dotnet/packs/Microsoft.iOS.Sdk.net8.0_17.5/17.5.8020/tools/bin/mlaunch --launchsim bin/Debug/net8.0-ios/iossimulator-arm64/MonkeyFinderHybrid.app/ --device ":v2:runtime=com.apple.CoreSimulator.SimRuntime.iOS-17-5,devicetype=com.apple.CoreSimulator.SimDeviceType.iPad-Pro-13-inch-M4-16GB" --stdout /dev/ttys000 --stderr /dev/ttys000 --wait-for-exit:true" exited with code 1. [/Users/nardo/Learning/test_dotnet/DWHP6/MonkeyFinderHybrid/MonkeyFinderHybrid.csproj::TargetFramework=net8.0-ios]
+    0 Warning(s)
+    2 Error(s)
 
 
 

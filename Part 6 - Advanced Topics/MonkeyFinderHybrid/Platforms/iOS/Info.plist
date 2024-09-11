@@ -31,8 +31,14 @@
     <array>
        <string>fetch</string>
     </array>
-  
-    <key>XSAppIconAssets</key>
+
+  <key>CFBundleVersionString</key>
+  <string>1.0</string>
+  <key>CFBundleVersion</key>
+  <string>1</string>
+
+
+  <key>XSAppIconAssets</key>
     <string>Assets.xcassets/appicon.appiconset</string>
     <key>NSLocationWhenInUseUsageDescription</key>
 	<string>Need to find monkeys!</string>
